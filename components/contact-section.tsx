@@ -97,7 +97,7 @@ export function ContactSection() {
         <div className="max-w-md mx-auto flex flex-col gap-3">
           
   {/* 1. BOOKING */}
-<a href="https://www.booking.com/hotel/ro/pensiunea-casa-noah.ro.html" target="_blank" rel="noopener noreferrer"
+<a href="https://www.booking.com/hotel/ro/casanoah-statiunea-climaterica-sambata.ro.html?label=gen173nr-10CAEoggI46AdIM1gEaMABiAEBmAEzuAEXyAEM2AED6AEB-AEBiAIBqAIBuALr-9TPBsACAdICJGI0MjdkOGU2LTViM2EtNDg3ZS04MGIxLTYxMWY1MDBlYzVkOdgCAeACAQ&aid=304142&ucfs=1&arphpl=1&checkin=2026-08-20&checkout=2026-08-22" target="_blank" rel="noopener noreferrer"
    className="bg-white text-black p-5 rounded-[24px] active:scale-[0.96] transition-all flex items-center justify-between shadow-xl">
     <div className="flex items-center gap-3">
       <div className="bg-blue-600 p-2.5 rounded-xl text-white flex items-center justify-center">
@@ -130,7 +130,7 @@ export function ContactSection() {
                  className="bg-[#1877F2] h-16 rounded-[20px] flex items-center justify-center active:scale-[0.94] transition-all shadow-lg">
                   <Facebook size={26} className="text-white" fill="white" />
               </a>
-              <a href="https://instagram.com/pensiuneacasanoah" target="_blank" 
+              <a href="https://www.instagram.com/pensiunea_casa_noah/" target="_blank" 
                  className="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] h-16 rounded-[20px] flex items-center justify-center active:scale-[0.94] transition-all shadow-lg">
                   <Instagram size={26} className="text-white" />
               </a>

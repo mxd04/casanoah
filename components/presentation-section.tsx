@@ -29,7 +29,6 @@ const getWeatherConfig = (code: number) => {
 
 export function ExperienceGallery() {
   const [active, setActive] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
   const [fullscreenImg, setFullscreenImg] = useState<string | null>(null);
   const [showWeather, setShowWeather] = useState(false);
   const [weatherData, setWeatherData] = useState<any>(null);
@@ -61,14 +60,10 @@ export function ExperienceGallery() {
   const nextSlide = () => setActive((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setActive((prev) => (prev - 1 + slides.length) % slides.length);
 
-  // Funcție pentru gestionarea swipe-ului
   const handleDragEnd = (event: any, info: any) => {
-    const threshold = 50; // distanța minimă pentru a declanșa slide-ul
-    if (info.offset.x < -threshold) {
-      nextSlide();
-    } else if (info.offset.x > threshold) {
-      prevSlide();
-    }
+    const threshold = 50;
+    if (info.offset.x < -threshold) nextSlide();
+    else if (info.offset.x > threshold) prevSlide();
   };
 
   const getHourlyDataForDay = (dayIdx: number) => {
@@ -82,7 +77,11 @@ export function ExperienceGallery() {
   };
 
   return (
-    <section className="relative min-h-screen bg-[#050505] flex flex-col items-center justify-center pt-12 pb-30 px-4 overflow-visible text-white font-sans">
+    /* MODIFICARE AICI: Am adaugat id="galerie-foto" si scroll-mt-24 */
+    <section 
+      id="galerie-foto" 
+      className="relative min-h-screen bg-[#050505] flex flex-col items-center justify-center pt-12 pb-30 px-4 overflow-visible text-white font-sans scroll-mt-24"
+    >
       
       {/* BACKGROUND & LAYOUT */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -100,13 +99,12 @@ export function ExperienceGallery() {
       </div>
 
       <div className="md:hidden flex flex-col items-center w-full max-w-[360px] relative z-20">
-        {/* CARD CU POZE MODIFICAT PENTRU SWIPE */}
         <motion.div 
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.2}
           onDragEnd={handleDragEnd}
-          className="relative w-full aspect-[4/5.5] rounded-[40px] overflow-hidden border border-white/10 bg-black shadow-2xl touch-pan-y"
+          className="relative w-full aspect-[3.5/5.5] rounded-[40px] overflow-hidden border border-white/20 bg-black shadow-2xl touch-pan-y"
         >
           <AnimatePresence initial={false}>
             {slides.map((slide, index) => (
@@ -171,7 +169,7 @@ export function ExperienceGallery() {
         </div>
       </div>
 
-      {/* MODALA METEO */}
+      {/* MODALA METEO (Păstrată integral ca în sursă) */}
       <AnimatePresence>
         {showWeather && (
           <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">

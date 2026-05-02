@@ -19,9 +19,13 @@ export default function PricingSection() {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      const sectionTop = rect.top;
-      const sectionHeight = rect.height;
-      const progress = Math.min(Math.max(-sectionTop / (sectionHeight - windowHeight), 0), 1);
+      
+      // Calculăm cât din secțiune a trecut DEASUPRA marginii de jos a ecranului
+      const distanceFromBottom = windowHeight - rect.top;
+      
+      // Calculăm progresul de la 0 la 1 pe toată înălțimea secțiunii
+      const progress = Math.min(Math.max(distanceFromBottom / rect.height, 0), 1);
+      
       setScrollProgress(progress);
     };
 
@@ -35,6 +39,8 @@ export default function PricingSection() {
     };
   }, [isClient]);
 
+  // Schimbăm starea la 50% din scroll-ul secțiunii
+  // true = Jacuzzi, false = Casa Noah
   const isCiubar = scrollProgress > 0.5;
 
   const getTransitionStyles = (visible: boolean) => 
@@ -208,7 +214,7 @@ export default function PricingSection() {
                 <div className="hidden md:flex justify-end items-center h-full">
                   <div className="relative aspect-[16/11] w-full max-h-[520px] overflow-hidden rounded-[45px] border-[14px] border-white/10 shadow-2xl">
                     <div className={getImageTransitionStyles(!isCiubar)}>
-                      <img src="images/abstract.jpg" className="w-full h-full object-cover" alt="Room" />
+                      <img src="images/ abstract.jpg" className="w-full h-full object-cover" alt="Room" />
                     </div>
                     <div className={getImageTransitionStyles(isCiubar)}>
                       <img src="images/abstract.jpg" className="w-full h-full object-cover" alt="Jacuzzi" />

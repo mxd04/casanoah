@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
-import { Bebas_Neue, Inter, Sacramento } from 'next/font/google' // 1. Am adaugat Sacramento aici
+import { Bebas_Neue, Inter, Sacramento } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+// 1. IMPORTĂM COMPONENTA DE SCROLL
+import { SmoothScroll } from '@/components/SmoothScroll' 
 
 const bebasNeue = Bebas_Neue({ 
   subsets: ["latin"],
@@ -14,7 +16,6 @@ const inter = Inter({
   variable: "--font-sans"
 });
 
-// 2. Configuram Sacramento
 const sacramento = Sacramento({
   subsets: ["latin"],
   weight: ["400"],
@@ -33,10 +34,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ro">
-      {/* 3. Am adaugat sacramento.variable in className */}
       <body className={`${inter.variable} ${bebasNeue.variable} ${sacramento.variable} font-sans antialiased`}>
         
-        {children}
+        {/* 2. ÎNVELIM TOT CONȚINUTUL ÎN SMOOTHSCROLL */}
+        <SmoothScroll>
+          <main>
+            {children}
+          </main>
+        </SmoothScroll>
 
         <Analytics />
       </body>

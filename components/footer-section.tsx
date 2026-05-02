@@ -42,25 +42,17 @@ export function FooterSection() {
           >
             <div className="bg-black/40 rounded-[2.3rem] p-8 space-y-6">
               <div className="space-y-5">
-                <a href="tel:+40123456789" className="flex items-center gap-4 group">
+                <a href="tel:+40741354774" className="flex items-center gap-4 group">
                   <div className="h-10 w-10 rounded-full bg-green-400/10 flex items-center justify-center text-green-400 group-active:scale-90 transition-transform">
                     <Phone size={18} />
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest text-white/40">Suna-ne</p>
-                    <p className="text-sm font-bold">+40 123 456 789</p>
+                    <p className="text-sm font-bold">+40 741 354 774</p>
                   </div>
                 </a>
 
-                <a href="mailto:contact@casanoah.ro" className="flex items-center gap-4 group">
-                  <div className="h-10 w-10 rounded-full bg-green-400/10 flex items-center justify-center text-green-400 group-active:scale-90 transition-transform">
-                    <Mail size={18} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-widest text-white/40">Email</p>
-                    <p className="text-sm font-bold">contact@casanoah.ro</p>
-                  </div>
-                </a>
+
 
                 <div className="flex items-center gap-4">
                   <div className="h-10 w-10 rounded-full bg-green-400/10 flex items-center justify-center text-green-400">

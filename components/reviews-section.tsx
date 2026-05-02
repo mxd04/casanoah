@@ -198,12 +198,8 @@ export function ReviewsSection() {
           </div>
         </div>
 <div className="mt-20 flex flex-col items-center pointer-events-none select-none">
-          <div className="w-16 h-[1px] bg-white/5 mb-4" />
-          <h3 
-  className="text-3xl md:text-3xl text-white opacity-[0.15] font-light tracking-wide font-[family-name:var(--font-dancing)]"
->
-  Va multumim tuturor!
-</h3>
+
+
         </div>
 
       </div>

@@ -1,33 +1,39 @@
 "use client";
-
-import { ReactLenis } from '@studio-freight/react-lenis'
+import { useEffect, useRef } from "react";
+import Lenis from "lenis";
 
 export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <ReactLenis 
-      root 
-      options={{ 
-        // 1. Durata și fluiditatea (Optimizat pentru 144Hz)
-        duration: 1.2, 
-        lerp: 0.1, 
-        
-        // 2. Controlul roțiței de mouse
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        
-        // 3. Controlul pentru Touch (Înlocuitor pentru smoothTouch)
-        // syncTouch înseamnă că nu forțăm scroll-ul JS peste cel nativ de mobil
-        syncTouch: false, 
-        touchMultiplier: 2,
+  const lenisRef = useRef<Lenis | null>(null);
 
-        // 4. Easing-ul premium
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        
-        // autoRaf a fost scos din opțiuni în noile versiuni deoarece 
-        // componenta ReactLenis îl gestionează singură acum.
-      }}
-    >
-      {children as any}
-    </ReactLenis>
-  )
-}
+  useEffect(() => {
+    // Forțează browserul să sară sus la refresh (nativ)
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
+    // Inițializare Lenis
+    lenisRef.current = new Lenis({
+      duration: 1.2,
+      lerp: 0.1,
+      wheelMultiplier: 1,
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+    });
+
+    // Forțează Lenis să înceapă de la 0
+    lenisRef.current.scrollTo(0, { immediate: true });
+
+    function raf(time: number) {
+      lenisRef.current?.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenisRef.current?.destroy();
+      lenisRef.current = null;
+    };
+  }, []);
+
+  return <>{children}</>;
+};
